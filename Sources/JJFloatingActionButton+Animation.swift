@@ -36,16 +36,18 @@ import UIKit
     /// - SeeAlso: `itemAnimationConfiguration`
     ///
     func open(animated: Bool = true, completion: (() -> Void)? = nil) {
-        guard let superview = superview, buttonState == .closed, !enabledItems.isEmpty, !isSingleActionButton else {
-            return
-        }
-
+		guard let _ = superview, buttonState == .closed, !enabledItems.isEmpty, !isSingleActionButton else {
+			return
+		}
         buttonState = .opening
         delegate?.floatingActionButtonWillOpen?(self)
 
         storeAnimationState()
-
-        superview.bringSubviewToFront(self)
+		
+		guard let superview = superview else {
+			return
+		}
+        superview.bringSubview(toFront: self)
         addOverlayView(to: superview)
         addItems(to: superview)
         itemContainerView.setNeedsLayout()
