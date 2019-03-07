@@ -117,6 +117,16 @@ import UIKit
         }
     }
 
+    /// The default diameter of the floating action button.
+    /// This is ignored if the size is defined by autolayout.
+    /// Default is `56`.
+    ///
+    @objc @IBInspectable public dynamic var buttonDiameter: CGFloat = 56 {
+        didSet {
+            invalidateIntrinsicContentSize()
+        }
+    }
+
     /// The size of an action item in relation to the floating action button.
     /// Default is `0.75`.
     ///
@@ -356,7 +366,7 @@ extension JJFloatingActionButton {
     /// The natural size for the floating action button.
     ///
     open override var intrinsicContentSize: CGSize {
-        return CGSize(width: 56, height: 56)
+        return CGSize(width: buttonDiameter, height: buttonDiameter)
     }
 }
 
@@ -375,7 +385,7 @@ fileprivate extension JJFloatingActionButton {
         layer.shadowRadius = 2
 
         addSubview(circleView)
-        addSubview(imageView)
+        circleView.addSubview(imageView)
 
         circleView.translatesAutoresizingMaskIntoConstraints = false
         circleView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -396,6 +406,11 @@ fileprivate extension JJFloatingActionButton {
         imageView.centerYAnchor.constraint(equalTo: circleView.centerYAnchor).isActive = true
         imageView.widthAnchor.constraint(lessThanOrEqualTo: circleView.widthAnchor, multiplier: imageSizeMuliplier).isActive = true
         imageView.heightAnchor.constraint(lessThanOrEqualTo: circleView.heightAnchor, multiplier: imageSizeMuliplier).isActive = true
+
+        imageView.setContentCompressionResistancePriority(.fittingSizeLevel, for: .horizontal)
+        imageView.setContentCompressionResistancePriority(.fittingSizeLevel, for: .vertical)
+        circleView.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
+        circleView.setContentHuggingPriority(.fittingSizeLevel, for: .vertical)
 
         configureButtonImage()
     }

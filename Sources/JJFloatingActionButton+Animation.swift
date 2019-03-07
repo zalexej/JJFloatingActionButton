@@ -215,7 +215,7 @@ fileprivate extension JJFloatingActionButton {
                       group: DispatchGroup,
                       animated: Bool) {
         let animation: () -> Void = {
-            self.imageView.transform = CGAffineTransform(rotationAngle: angle)
+            self.circleView.transform = CGAffineTransform(rotationAngle: angle)
         }
 
         UIView.animate(duration: settings.duration,
