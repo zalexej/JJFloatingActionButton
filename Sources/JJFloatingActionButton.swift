@@ -138,7 +138,7 @@ import UIKit
     /// - SeeAlso: `JJButtonAnimationConfiguration`
     /// - SeeAlso: `itemAnimationConfiguration`
     ///
-    public var buttonAnimationConfiguration: JJButtonAnimationConfiguration = .rotation()
+    @objc public var buttonAnimationConfiguration: JJButtonAnimationConfiguration = .rotation()
 
     /// The opening style of the action items.
     /// Default is `JJItemAnimationConfiguration.popUp()`
@@ -146,7 +146,7 @@ import UIKit
     /// - SeeAlso: `JJItemAnimationConfiguration`
     /// - SeeAlso: `buttonAnimationConfiguration`
     ///
-    public var itemAnimationConfiguration: JJItemAnimationConfiguration = .popUp()
+    @objc public var itemAnimationConfiguration: JJItemAnimationConfiguration = .popUp()
 
     /// When enabled and only one action item is added, the floating action button will not open,
     /// but the action from the action item will be executed direclty when the button is tapped.
