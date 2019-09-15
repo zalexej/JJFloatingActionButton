@@ -46,11 +46,13 @@ internal class ConfigurationExampleViewController: UIViewController {
     }
 
     fileprivate func configureActionButton() {
+        actionButton.handleSingleActionDirectly = false
         actionButton.buttonDiameter = 65
         actionButton.overlayView.backgroundColor = UIColor(hue: 0.31, saturation: 0.37, brightness: 0.10, alpha: 0.30)
         actionButton.buttonImage = #imageLiteral(resourceName: "Dots")
         actionButton.buttonColor = .red
         actionButton.buttonImageColor = .white
+        actionButton.buttonImageSize = CGSize(width: 30, height: 30)
 
         actionButton.buttonAnimationConfiguration = .transition(toImage: #imageLiteral(resourceName: "X"))
         actionButton.itemAnimationConfiguration = .slideIn(withInterItemSpacing: 14)
@@ -76,6 +78,10 @@ internal class ConfigurationExampleViewController: UIViewController {
             item.layer.shadowRadius = CGFloat(2)
         }
 
+        addItems()
+    }
+
+    fileprivate func addItems() {
         actionButton.addItem(title: "Balloon", image: #imageLiteral(resourceName: "Baloon")) { item in
             Helper.showAlert(for: item)
         }
@@ -84,12 +90,22 @@ internal class ConfigurationExampleViewController: UIViewController {
             Helper.showAlert(for: item)
         }
 
-        let item = actionButton.addItem()
-        item.titleLabel.text = "Owl"
-        item.imageView.image = #imageLiteral(resourceName: "Owl")
-        item.buttonColor = .black
-        item.buttonImageColor = .white
-        item.action = { item in
+        let owlItem = actionButton.addItem()
+        owlItem.titleLabel.text = "Owl"
+        owlItem.imageView.image = #imageLiteral(resourceName: "Owl")
+        owlItem.buttonColor = .black
+        owlItem.buttonImageColor = .white
+        owlItem.action = { item in
+            Helper.showAlert(for: item)
+        }
+
+        let heartItem = actionButton.addItem()
+        heartItem.titleLabel.text = "Heart"
+        heartItem.imageView.image = #imageLiteral(resourceName: "Favourite")
+        heartItem.buttonColor = .clear
+        heartItem.buttonImageColor = .red
+        heartItem.imageSize = CGSize(width: 30, height: 30)
+        heartItem.action = { item in
             Helper.showAlert(for: item)
         }
     }
