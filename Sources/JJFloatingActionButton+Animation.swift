@@ -62,6 +62,9 @@ import UIKit
         openItems(animated: animated, group: animationGroup)
 
         let groupCompletion: () -> Void = {
+            guard self.buttonState == .opening else {
+                return
+            }
             self.buttonState = .open
             self.delegate?.floatingActionButtonDidOpen?(self)
             completion?()
@@ -82,7 +85,7 @@ import UIKit
     /// - SeeAlso: `itemAnimationConfiguration`
     ///
     func close(animated: Bool = true, completion: (() -> Void)? = nil) {
-        guard buttonState == .open else {
+        guard buttonState == .open || buttonState == .opening else {
             return
         }
         buttonState = .closing
