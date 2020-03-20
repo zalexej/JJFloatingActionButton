@@ -405,33 +405,6 @@ extension JJFloatingActionButton {
     }
 }
 
-// MARK: - UIView
-
-extension JJFloatingActionButton {
-    /// The natural size for the floating action button.
-    ///
-    open override var intrinsicContentSize: CGSize {
-        return CGSize(width: buttonDiameter, height: buttonDiameter)
-    }
-
-    /// Updates constraints for the view.
-    ///
-    open override func updateConstraints() {
-        updateDynamicConstraints()
-        super.updateConstraints()
-    }
-
-    /// Tells the view that its superview changed.
-    ///
-    public override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        if superview == nil {
-            close(animated: false)
-            removeRelatedViewsFromSuperview()
-        }
-    }
-}
-
 // MARK: - Setup
 
 fileprivate extension JJFloatingActionButton {
